@@ -6,8 +6,12 @@ function onFormSubmit(event) {
    const email = event.currentTarget.elements.email.value;
    const password = event.currentTarget.elements.password.value;
    if (email && password) {
-      const formData = new FormData(event.currentTarget);
-      console.log(formData);
+      const user = new Object();
+      // const formData = new FormData(event.currentTarget);
+      // console.log(formData);
+      user.email = email;
+      user.password = password;
+      console.log(user);
       form.reset();
    }
    else {

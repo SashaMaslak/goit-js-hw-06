@@ -13,53 +13,19 @@ const images = [
   },
 ];
 
-const imagesElements = [];
-
 const galleryElements = document.querySelector('.gallery');
 galleryElements.style.listStyle = 'none';
 galleryElements.style.margin = '0';
 galleryElements.style.padding = '0';
 galleryElements.style.display = 'flex';
 
-for (let i = 0; i < images.length; i += 1) {
-  const image = images[i];
-  const galleryEl = document.createElement('li');
-  galleryEl.style.marginRight = '15px';
-  galleryEl.insertAdjacentHTML('beforeend',
-    `<img src=${image.url} alt="${image.alt}" width="480px"/>`);
+const imageMarkup = createImagesMarkup(images);
+galleryElements.insertAdjacentHTML('beforeend', imageMarkup);
   
-  imagesElements.push(galleryEl);
-};
-
-
-
-galleryElements.append(...imagesElements);
-
-console.log(galleryElements);
-
-
-
-
-
-// const imgElements = images.map(element => { 
-//   const galleryEl = document.createElement('li');
-//   const imageEl = document.createElement('img');
-//   imageEl.src = element.url;
-// });
-
-// images.forEach(function ({url, alt}) {
-//   const galleryEl = document.createSelector('li');
-//   const imageEl = document.createElement('img');
-//   imageEl.src = url;
-//   imageEl.alt = alt;
-//   galleryElements.insertAdjacentHTML(beforeend, `<li><img scr=$()`);
-// })
-
-// ingredients.forEach(ingredient => {
-//   console.log(ingredientsEl);
-  
-//   const ingredientEl = document.createElement('li');
-//   ingredientEl.textContent = ingredient;
-//   ingredientEl.classList.add('item');
-//   ingredientsEl.appendChild(ingredientEl);
-// })
+function createImagesMarkup(images) {
+  return images
+    .map(({ url, alt }) => {
+    return `<li style="margin-right: 15px"><img src=${url} alt="${alt}" width="480px"></img></li>`;
+    })
+    .join('');
+}
